@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -150,16 +150,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\ApplicationCore.cpp" />
+    <ClCompile Include="Src\Engine\Buffers\BufferObjects.cpp" />
+    <ClCompile Include="Src\Engine\Buffers\VertexArrays.cpp" />
     <ClCompile Include="Src\Engine\External\glad.c" />
     <ClCompile Include="Src\Engine\External\stb_image.cpp" />
+    <ClCompile Include="Src\Engine\Graphics\SceneCamera.cpp" />
+    <ClCompile Include="Src\Engine\Graphics\ShaderPrograms.cpp" />
     <ClCompile Include="Src\Engine\Graphics\WindowFrame.cpp" />
+    <ClCompile Include="Src\Engine\Graphics\SceneSkybox.cpp" />
     <ClCompile Include="Src\Engine\Utils\LoggingManager.cpp" />
     <ClCompile Include="Src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Core\ApplicationCore.h" />
+    <ClInclude Include="Src\Engine\Buffers\BufferObjects.h" />
+    <ClInclude Include="Src\Engine\Buffers\VertexArrays.h" />
+    <ClInclude Include="Src\Engine\Graphics\SceneCamera.h" />
+    <ClInclude Include="Src\Engine\Graphics\ShaderPrograms.h" />
+    <ClInclude Include="Src\Engine\Graphics\SceneSkybox.h" />
     <ClInclude Include="Src\Engine\Graphics\WindowFrame.h" />
     <ClInclude Include="Src\Engine\Utils\LoggingManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Src\Engine\Buffers\VertexArrays.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
