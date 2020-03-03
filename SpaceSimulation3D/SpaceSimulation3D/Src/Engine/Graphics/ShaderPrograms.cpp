@@ -117,6 +117,12 @@ uint32_t ShaderProgram::queryUniformLocation(const uint32_t& id, const std::stri
 	return m_uniformCache[uniform];
 }
 
+void ShaderProgram::bindUniformBlock(const std::string& uniform_block, uint32_t unit) const
+{
+	uint32_t uniformBlockIndex = glGetUniformBlockIndex(m_ID, uniform_block.c_str());
+	glUniformBlockBinding(m_ID, uniformBlockIndex, unit);
+}
+
 void ShaderProgram::bindProgram() const
 {
 	glUseProgram(m_ID);

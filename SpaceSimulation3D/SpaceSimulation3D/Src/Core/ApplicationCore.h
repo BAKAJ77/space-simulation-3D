@@ -3,6 +3,7 @@
 #include "Engine/Graphics/ShaderPrograms.h"
 #include "Engine/Graphics/SceneCamera.h"
 #include "Engine/Graphics/SceneSkybox.h"
+#include "Engine/Graphics/SceneModel.h"
 
 #include <memory>
 
@@ -13,7 +14,10 @@ private:
 	std::shared_ptr<ShaderProgram> m_modelShader;
 	std::shared_ptr<ShaderProgram> m_skyboxShader;
 
+	std::shared_ptr<UniformBuffer> m_matricesUBO;
+
 	std::shared_ptr<Skybox> m_sceneSkybox;
+	std::shared_ptr<SceneModel> m_planet;
 	SceneCamera m_camera;
 private:
 	void initResources(); // Initializes the resources needed for the application

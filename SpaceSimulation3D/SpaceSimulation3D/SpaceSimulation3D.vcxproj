@@ -154,8 +154,11 @@
     <ClCompile Include="Src\Engine\Buffers\VertexArrays.cpp" />
     <ClCompile Include="Src\Engine\External\glad.c" />
     <ClCompile Include="Src\Engine\External\stb_image.cpp" />
+    <ClCompile Include="Src\Engine\Graphics\MeshObject.cpp" />
     <ClCompile Include="Src\Engine\Graphics\SceneCamera.cpp" />
+    <ClCompile Include="Src\Engine\Graphics\SceneModel.cpp" />
     <ClCompile Include="Src\Engine\Graphics\ShaderPrograms.cpp" />
+    <ClCompile Include="Src\Engine\Graphics\TextureComponent.cpp" />
     <ClCompile Include="Src\Engine\Graphics\WindowFrame.cpp" />
     <ClCompile Include="Src\Engine\Graphics\SceneSkybox.cpp" />
     <ClCompile Include="Src\Engine\Utils\LoggingManager.cpp" />
@@ -165,9 +168,12 @@
     <ClInclude Include="Src\Core\ApplicationCore.h" />
     <ClInclude Include="Src\Engine\Buffers\BufferObjects.h" />
     <ClInclude Include="Src\Engine\Buffers\VertexArrays.h" />
+    <ClInclude Include="Src\Engine\Graphics\MeshObject.h" />
     <ClInclude Include="Src\Engine\Graphics\SceneCamera.h" />
+    <ClInclude Include="Src\Engine\Graphics\SceneModel.h" />
     <ClInclude Include="Src\Engine\Graphics\ShaderPrograms.h" />
     <ClInclude Include="Src\Engine\Graphics\SceneSkybox.h" />
+    <ClInclude Include="Src\Engine\Graphics\TextureComponent.h" />
     <ClInclude Include="Src\Engine\Graphics\WindowFrame.h" />
     <ClInclude Include="Src\Engine\Utils\LoggingManager.h" />
   </ItemGroup>

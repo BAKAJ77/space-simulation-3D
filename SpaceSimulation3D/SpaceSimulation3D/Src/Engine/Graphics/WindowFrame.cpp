@@ -65,6 +65,8 @@ void WindowFrame::setCursorState(bool enabled) const
 
 void WindowFrame::setDepthTestState(bool enabled) const
 {
+	m_depthTestEnabled = enabled;
+
 	if (enabled)
 		glEnable(GL_DEPTH_TEST);
 	else

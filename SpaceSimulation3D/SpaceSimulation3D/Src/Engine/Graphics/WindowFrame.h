@@ -10,7 +10,7 @@ private:
 	GLFWwindow* m_windowPtr;
 	const uint32_t m_width, m_height;
 
-	bool m_depthTestEnabled;
+	mutable bool m_depthTestEnabled;
 private:
 	void initGLFWLibrary() const; // Initializes the GLFW library
 public:

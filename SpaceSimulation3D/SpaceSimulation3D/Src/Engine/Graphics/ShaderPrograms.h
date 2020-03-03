@@ -26,6 +26,8 @@ public:
 	ShaderProgram(const std::string& vsh_path, const std::string& fsh_path, const std::string& gsh_path = "");
 	~ShaderProgram();
 
+	void bindUniformBlock(const std::string& uniform_block, uint32_t unit) const; // Binds the uniform block in shader to binding point
+
 	void bindProgram() const; // Binds the shader program
 	void unbindProgram() const; // Unbinds the shader program
 public:
