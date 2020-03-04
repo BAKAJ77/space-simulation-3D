@@ -30,12 +30,13 @@ class MeshObject
 {
 private:
 	std::shared_ptr<VertexArray> m_vao;
-	uint32_t m_numIndices;
-
+	uint32_t m_numIndices, m_numInstances;
+	bool m_instanced;
+	
 	Material m_material;
 public:
 	MeshObject(const std::vector<VertexData>& vertices, const std::vector<uint32_t>& indices,
-		const Material& material);
+		const Material& material, const void* instances_array = nullptr, uint32_t num_instances = 0);
 	~MeshObject();
 
 	void render(std::shared_ptr<ShaderProgram> shader) const;

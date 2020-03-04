@@ -11,13 +11,21 @@ class ApplicationCore
 {
 private:
 	const std::shared_ptr<WindowFrame> m_window;
-	std::shared_ptr<ShaderProgram> m_modelShader;
+	
+	std::shared_ptr<FrameBuffer> m_multisampleFBO;
+	std::shared_ptr<VertexArray> m_quadVAO;
+
+	std::shared_ptr<ShaderProgram> m_planetShader;
+	std::shared_ptr<ShaderProgram> m_asteroidShader;
 	std::shared_ptr<ShaderProgram> m_skyboxShader;
+	std::shared_ptr<ShaderProgram> m_multisamplingShader;
 
 	std::shared_ptr<UniformBuffer> m_matricesUBO;
 
 	std::shared_ptr<Skybox> m_sceneSkybox;
 	std::shared_ptr<SceneModel> m_planet;
+	std::shared_ptr<SceneModel> m_asteroid;
+
 	SceneCamera m_camera;
 private:
 	void initResources(); // Initializes the resources needed for the application

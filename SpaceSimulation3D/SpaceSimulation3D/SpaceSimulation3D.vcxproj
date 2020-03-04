@@ -162,6 +162,7 @@
     <ClCompile Include="Src\Engine\Graphics\WindowFrame.cpp" />
     <ClCompile Include="Src\Engine\Graphics\SceneSkybox.cpp" />
     <ClCompile Include="Src\Engine\Utils\LoggingManager.cpp" />
+    <ClCompile Include="Src\Engine\Utils\RandomGenerator.cpp" />
     <ClCompile Include="Src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="Src\Engine\Graphics\TextureComponent.h" />
     <ClInclude Include="Src\Engine\Graphics\WindowFrame.h" />
     <ClInclude Include="Src\Engine\Utils\LoggingManager.h" />
+    <ClInclude Include="Src\Engine\Utils\RandomGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Src\Engine\Buffers\VertexArrays.tpp" />

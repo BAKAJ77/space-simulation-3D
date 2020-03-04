@@ -5,9 +5,11 @@
 #include <assimp/postprocess.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-SceneModel::SceneModel(const std::string& path, const std::string& texture_dir, float shininess) :
+SceneModel::SceneModel(const std::string& path, const std::string& texture_dir, float shininess,
+	const void* instanced_array, uint32_t num_instances) :
 	m_shininess(shininess), m_position(glm::vec3(1.0f)), m_scale(glm::vec3(1.0f)),
-	m_rotationAxis(glm::vec3(1.0f)), m_rotationAngle(0.0f), m_textureDir(texture_dir)
+	m_rotationAxis(glm::vec3(1.0f)), m_rotationAngle(0.0f), m_textureDir(texture_dir), 
+	m_instancedArray(instanced_array), m_numInstances(num_instances)
 {
 	// Load the model data from file
 	Assimp::Importer importer;
@@ -88,7 +90,7 @@ MeshObject SceneModel::processMeshData(aiMesh* mesh, const aiScene* scene)
 			material = this->getGenericMat(scene->mMaterials[mesh->mMaterialIndex]);
 	}
 
-	return MeshObject(vertices, indices, material);
+	return MeshObject(vertices, indices, material, m_instancedArray, m_numInstances);
 }
 
 std::vector<TextureData> SceneModel::getMatTextures(aiMaterial* mat, aiTextureType type) const
@@ -163,4 +165,9 @@ void SceneModel::render(std::shared_ptr<ShaderProgram> shader, const SceneCamera
 
 	for (auto& mesh : m_meshes)
 		mesh.render(shader);
+}
+
+const glm::vec3& SceneModel::getPosition() const
+{
+	return m_position;
 }

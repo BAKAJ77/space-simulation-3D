@@ -1,5 +1,6 @@
 #pragma once
 #include <glad/glad.h>
+#include <vector>
 
 typedef unsigned int uint32_t;
 
@@ -50,4 +51,24 @@ public:
 	void unbindBuffer() const; // Unbinds the ubo
 public:
 	const uint32_t& getID() const; // Returns the ID of the ubo
+};
+
+class FrameBuffer
+{
+private:
+	uint32_t m_ID, m_colorAttachment, m_depthStencilRBO;
+	GLenum m_textureTarget;
+public:
+	FrameBuffer();
+	~FrameBuffer();
+
+	void attachColorBuffer(GLenum target, int width, int height); // Attaches a color buffer to the fbo
+	void attachDepthStencilRBO(int width, int height); // Attaches a depth and stencil rbo to the fbo
+
+	void bindColorAttachment(int unit) const; // Binds the color buffer attached to the fbo
+	void bindBuffer() const; // Binds the fbo
+
+	void unbindBuffer() const; // Unbinds the fbo
+public:
+	const uint32_t& getID() const; // Returns the ID of the fbo
 };

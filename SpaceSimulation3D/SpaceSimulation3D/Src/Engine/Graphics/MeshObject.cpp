@@ -2,8 +2,8 @@
 #include <glad/glad.h>
 
 MeshObject::MeshObject(const std::vector<VertexData>& vertices, const std::vector<uint32_t>& indices,
-	const Material& material) :
-	m_numIndices(indices.size()), m_material(material)
+	const Material& material, const void* instances_array, uint32_t num_instances) :
+	m_numIndices(indices.size()), m_material(material), m_instanced(false), m_numInstances(num_instances)
 {
 	// Setup the mesh's VBO and IBO
 	auto meshVBO = std::make_shared<VertexBuffer>(&vertices[0], sizeof(VertexData) * vertices.size(), 
@@ -16,6 +16,20 @@ MeshObject::MeshObject(const std::vector<VertexData>& vertices, const std::vecto
 	m_vao->pushLayout<float>(1, 3, sizeof(VertexData), offsetof(VertexData, m_normalPos));
 	m_vao->pushLayout<float>(2, 2, sizeof(VertexData), offsetof(VertexData, m_texturePos));
 	m_vao->attachBufferObjects(meshVBO, meshIBO);
+
+	if (instances_array)
+	{
+		m_instanced = true;
+
+		auto instancedBuffer = std::make_shared<VertexBuffer>(instances_array, sizeof(glm::mat4) * num_instances,
+			GL_STATIC_DRAW);
+
+		m_vao->pushLayout<float>(3, 4, sizeof(glm::mat4), 0, 1);
+		m_vao->pushLayout<float>(4, 4, sizeof(glm::mat4), sizeof(glm::vec4), 1);
+		m_vao->pushLayout<float>(5, 4, sizeof(glm::mat4), sizeof(glm::vec4) * 2, 1);
+		m_vao->pushLayout<float>(6, 4, sizeof(glm::mat4), sizeof(glm::vec4) * 3, 1);
+		m_vao->attachBufferObjects(instancedBuffer);
+	}
 }
 
 MeshObject::~MeshObject() {}
@@ -50,5 +64,8 @@ void MeshObject::render(std::shared_ptr<ShaderProgram> shader) const
 	}
 
 	m_vao->bind();
-	glDrawElements(GL_TRIANGLES, m_numIndices, GL_UNSIGNED_INT, nullptr);
+	if(!m_instanced)
+		glDrawElements(GL_TRIANGLES, m_numIndices, GL_UNSIGNED_INT, nullptr);
+	else
+		glDrawElementsInstanced(GL_TRIANGLES, m_numIndices, GL_UNSIGNED_INT, nullptr, m_numInstances);
 }
