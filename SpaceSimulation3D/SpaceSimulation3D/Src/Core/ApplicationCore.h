@@ -4,6 +4,7 @@
 #include "Engine/Graphics/SceneCamera.h"
 #include "Engine/Graphics/SceneSkybox.h"
 #include "Engine/Graphics/SceneModel.h"
+#include "Engine/Graphics/SceneLighting.h"
 
 #include <memory>
 
@@ -26,6 +27,7 @@ private:
 	std::shared_ptr<SceneModel> m_planet;
 	std::shared_ptr<SceneModel> m_asteroid;
 
+	SpotLight m_flashlight;
 	SceneCamera m_camera;
 private:
 	void initResources(); // Initializes the resources needed for the application

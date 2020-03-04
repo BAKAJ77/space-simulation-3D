@@ -120,6 +120,18 @@ void ApplicationCore::initResources()
 		static_cast<int>(m_window->getHeight()));
 	m_multisampleFBO->attachDepthStencilRBO(static_cast<int>(m_window->getWidth()), 
 		static_cast<int>(m_window->getHeight()));
+
+	// Setup the spotlight (AKA the flashlight) properties
+	m_flashlight.m_ambient = glm::vec3(0.1f);
+	m_flashlight.m_diffuse = glm::vec3(1.0f);
+	m_flashlight.m_specular = glm::vec3(1.0f);
+
+	m_flashlight.m_constant = 1.0f;
+	m_flashlight.m_linear = 0.7f;
+	m_flashlight.m_quadratic = 1.8f;
+
+	m_flashlight.m_innerCutOff = cos(glm::radians(12.5f));
+	m_flashlight.m_outerCutOff = cos(glm::radians(17.5f));
 }
 
 void ApplicationCore::mainLoop()
@@ -139,13 +151,25 @@ void ApplicationCore::mainLoop()
 
 void ApplicationCore::updateTick(const float& DELTA_TIME)
 {
+	float CURRENT_TIME = static_cast<float>(glfwGetTime());
+	static float prevTime = 0.0f;
+
 	if (m_window->wasKeyPressed(GLFW_KEY_ESCAPE))
 		m_window->requestClose();
+	else if (m_window->wasKeyPressed(GLFW_KEY_F) && (CURRENT_TIME - prevTime > 0.5f))
+	{
+		m_flashlight.m_enabled = !m_flashlight.m_enabled;
+		prevTime = CURRENT_TIME;
+	}
 
 	m_window->updateTick();
 
 	m_camera.updateMovement(DELTA_TIME);
 	m_camera.updateView();
+
+	// Update necessary camera properties
+	m_flashlight.m_position = m_camera.getPosition();
+	m_flashlight.m_direction = m_camera.getFrontDir();
 }
 
 void ApplicationCore::render() const
@@ -165,8 +189,8 @@ void ApplicationCore::render() const
 
 	// Render the scene
 	m_sceneSkybox->render(m_skyboxShader);
-	m_planet->render(m_planetShader, m_camera);
-	m_asteroid->render(m_asteroidShader, m_camera);
+	m_planet->render(m_planetShader, m_camera, &m_flashlight);
+	m_asteroid->render(m_asteroidShader, m_camera, &m_flashlight);
 
 	///////////////////// RENDER THE QUAD FOR THE SCENE TO BE DISPLAYED ON /////////////////////
 	m_multisampleFBO->unbindBuffer();

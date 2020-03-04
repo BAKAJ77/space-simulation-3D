@@ -28,6 +28,7 @@ public:
 	void updateView(); // Updates the view and projection matrices of the camera
 public:
 	const glm::vec3& getPosition() const; // Returns the position of the camera
+	const glm::vec3& getFrontDir() const; // Returns the front direction vector of the camera
 
 	const glm::mat4& getViewMatrix() const; // Returns the view matrix
 	const glm::mat4& getProjectionMatrix() const; // Returns the projection matrix

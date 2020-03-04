@@ -147,7 +147,8 @@ void SceneModel::setRotation(const glm::vec3& axis, float angle)
 	m_rotationAngle = angle;
 }
 
-void SceneModel::render(std::shared_ptr<ShaderProgram> shader, const SceneCamera& camera) const
+void SceneModel::render(std::shared_ptr<ShaderProgram> shader, const SceneCamera& camera, 
+	const SpotLight* flashlight) const
 {
 	glm::mat4 model;
 	model = glm::translate(model, m_position);
@@ -161,8 +162,29 @@ void SceneModel::render(std::shared_ptr<ShaderProgram> shader, const SceneCamera
 	shader->setUniform("sunlight.direction", glm::vec3(0.0f, -0.3f, 0.65f));
 	shader->setUniform("sunlight.ambient", glm::vec3(0.0f));
 	shader->setUniform("sunlight.diffuse", glm::vec3(1.0f));
-	shader->setUniform("sunlight.specular", glm::vec3(1.0f));
+	shader->setUniform("sunlight.specular", glm::vec3(0.5f));
 
+	// Setup the other lighting uniforms in shader
+	if (flashlight)
+	{
+		shader->setUniform("flashlight.enabled", flashlight->m_enabled);
+
+		shader->setUniform("flashlight.position", flashlight->m_position);
+		shader->setUniform("flashlight.direction", flashlight->m_direction);
+
+		shader->setUniform("flashlight.ambient", flashlight->m_ambient);
+		shader->setUniform("flashlight.diffuse", flashlight->m_diffuse);
+		shader->setUniform("flashlight.specular", flashlight->m_specular);
+
+		shader->setUniform("flashlight.constant", flashlight->m_constant);
+		shader->setUniform("flashlight.linear", flashlight->m_linear);
+		shader->setUniform("flashlight.specular", flashlight->m_specular);
+
+		shader->setUniform("flashlight.innerCutOff", flashlight->m_innerCutOff);
+		shader->setUniform("flashlight.outerCutOff", flashlight->m_outerCutOff);
+	}
+
+	// Render all meshes in model
 	for (auto& mesh : m_meshes)
 		mesh.render(shader);
 }

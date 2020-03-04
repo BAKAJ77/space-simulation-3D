@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/Graphics/MeshObject.h"
 #include "Engine/Graphics/SceneCamera.h"
+#include "Engine/Graphics/SceneLighting.h"
 
 #include <assimp/scene.h>
 
@@ -31,7 +32,8 @@ public:
 	void setScale(const glm::vec3& scale); // Sets the scale of the model
 	void setRotation(const glm::vec3& axis, float angle); // Sets the rotation state of the model
 
-	void render(std::shared_ptr<ShaderProgram> shader, const SceneCamera& camera) const; // Renders the whole model
+	void render(std::shared_ptr<ShaderProgram> shader, const SceneCamera& camera,
+		const SpotLight* flashlight = nullptr) const; // Renders the whole model
 public:
 	const glm::vec3& getPosition() const; // Returns the position of model
 };

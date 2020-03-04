@@ -134,6 +134,11 @@ const glm::vec3& SceneCamera::getPosition() const
 	return m_position;
 }
 
+const glm::vec3& SceneCamera::getFrontDir() const
+{
+	return front;
+}
+
 const glm::mat4& SceneCamera::getViewMatrix() const
 {
 	return m_view;

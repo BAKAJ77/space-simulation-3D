@@ -97,7 +97,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\bin;$(SolutionDir)Libraries\assimp-5.0.1\cmake_build\x86\code\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\bin;$(SolutionDir)Libraries\assimp-5.0.1\cmake-build\x86\code\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -128,7 +128,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\bin;$(SolutionDir)Libraries\assimp-5.0.1\cmake_build\x86\code\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.2.1\bin;$(SolutionDir)Libraries\assimp-5.0.1\cmake-build\x86\code\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -171,6 +171,7 @@
     <ClInclude Include="Src\Engine\Buffers\VertexArrays.h" />
     <ClInclude Include="Src\Engine\Graphics\MeshObject.h" />
     <ClInclude Include="Src\Engine\Graphics\SceneCamera.h" />
+    <ClInclude Include="Src\Engine\Graphics\SceneLighting.h" />
     <ClInclude Include="Src\Engine\Graphics\SceneModel.h" />
     <ClInclude Include="Src\Engine\Graphics\ShaderPrograms.h" />
     <ClInclude Include="Src\Engine\Graphics\SceneSkybox.h" />
