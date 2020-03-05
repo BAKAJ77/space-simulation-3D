@@ -24,7 +24,7 @@ private:
 	std::vector<TextureData> getMatTextures(aiMaterial* mat, aiTextureType type) const; // Returns the textures retrieved from the aiMaterial pointer
 	Material getGenericMat(aiMaterial* mat) const; // Returns a material object with ONLY phong components retrieved (and the shininess value)
 public:
-	SceneModel(const std::string& path, const std::string& texture_dir, float shininess = 32.0f,
+	SceneModel(const std::string& path, const std::string& texture_dir, float shininess = 128.0f,
 		const void* instanced_array = nullptr, uint32_t num_instances = 0);
 	~SceneModel();
 

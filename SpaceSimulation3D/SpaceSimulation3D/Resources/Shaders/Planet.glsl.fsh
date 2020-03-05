@@ -64,9 +64,9 @@ vec3 calculateDirectionalLighting(DirectionalLight light, vec3 normal)
         diffuse = texture(mat.diffuseTexture0, fshIn.texturePos).rgb * diffuseStrength * light.diffuse;
 
         // Specular calculations
-        vec3 reflectedLightRay = reflect(-lightRay, normal);
         vec3 cameraDir = normalize(cameraPos - fshIn.fragPos);
-        float specularStrength = pow(max(dot(reflectedLightRay, cameraDir), 0.0f), mat.shininess);
+        vec3 halfwayDir = normalize(cameraDir + lightRay);
+        float specularStrength = pow(max(dot(halfwayDir, normal), 0.0f), mat.shininess);
 
         specular = texture(mat.specularTexture0, fshIn.texturePos).rgb * specularStrength * light.specular;
     }
@@ -82,9 +82,9 @@ vec3 calculateDirectionalLighting(DirectionalLight light, vec3 normal)
         diffuse = mat.diffuse * diffuseStrength * light.diffuse;
 
         // Specular calculations
-        vec3 reflectedLightRay = reflect(-lightRay, normal);
         vec3 cameraDir = normalize(cameraPos - fshIn.fragPos);
-        float specularStrength = pow(max(dot(reflectedLightRay, cameraDir), 0.0f), mat.shininess);
+        vec3 halfwayDir = normalize(cameraDir + lightRay);
+        float specularStrength = pow(max(dot(halfwayDir, normal), 0.0f), mat.shininess);
 
         specular = mat.specular * specularStrength * light.specular;
     }
@@ -109,9 +109,9 @@ vec3 calculateSpotLighting(SpotLight light, vec3 normal)
             diffuse = texture(mat.diffuseTexture0, fshIn.texturePos).rgb * diffuseStrength * light.diffuse;
 
             // Specular calculations
-            vec3 reflectedLightRay = reflect(-lightRay, normal);
             vec3 cameraDir = normalize(cameraPos - fshIn.fragPos);
-            float specularStrength = pow(max(dot(reflectedLightRay, cameraDir), 0.0f), mat.shininess);
+            vec3 halfwayDir = normalize(cameraDir + lightRay);
+            float specularStrength = pow(max(dot(halfwayDir, normal), 0.0f), mat.shininess);
 
             specular = texture(mat.specularTexture0, fshIn.texturePos).rgb * specularStrength * light.specular;
         }
@@ -127,9 +127,9 @@ vec3 calculateSpotLighting(SpotLight light, vec3 normal)
             diffuse = mat.diffuse * diffuseStrength * light.diffuse;
 
             // Specular calculations
-            vec3 reflectedLightRay = reflect(-lightRay, normal);
             vec3 cameraDir = normalize(cameraPos - fshIn.fragPos);
-            float specularStrength = pow(max(dot(reflectedLightRay, cameraDir), 0.0f), mat.shininess);
+            vec3 halfwayDir = normalize(cameraDir + lightRay);
+            float specularStrength = pow(max(dot(halfwayDir, normal), 0.0f), mat.shininess);
 
             specular = mat.specular * specularStrength * light.specular;
         }
